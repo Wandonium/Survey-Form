@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+:root {
+    --primary-color: #ff6495;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +21,7 @@ body {
 }
 
 form {
-    width: 80%;
+    width: 60%;
     height: 100%;
     padding: 2rem;
     border-radius: 1rem;
@@ -26,7 +31,7 @@ form {
 
 fieldset {
     margin: .5rem;
-    padding: .3rem;
+    padding: .3rem .3rem 1.2rem .3rem;
     /* font-size: 1.2rem; */
     background-color: white;
     display: flex;
@@ -35,25 +40,55 @@ fieldset {
 }
 
 legend {
-    background-color: tomato;
+    background-color: var(--primary-color);
     color: white;
     padding: .5rem 1rem;
     font-family: 'Roboto', sans-serif;
 }
 
-input[type=text], input[type=email] {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 2px solid rgb(156, 156, 156);
+input {
+    border: none;
     background-color: white;
-    /* margin: .5rem 0; */
     padding: .5rem 0;
     font-size: 1.2rem;
 }
 
-label {
+.input-border-left {
+    display: inline-block;
+    height: 2px;
+    width: 0;
+    z-index: 2;
+    position: relative;
+    background-color: black;
+    transition: width .5s linear;
+}
+
+.input-border-right {
+    display: inline-block;
+    height: 2px;
+    width: 100%;
+    border: none;
+    position: relative;
+    top: -2px;
+    z-index: 1;
+    background-color: rgb(156, 156, 156);
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=number]:focus {
+    outline: none;
+}
+
+input[type=text]:focus ~ .input-border-left,
+input[type=email]:focus ~ .input-border-left,
+input[type=number]:focus ~ .input-border-left {
+    width: 100%;
+}
+
+label, .text-q {
     color: rgb(65, 63, 63);
+    font-size: 1.2rem;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -90,11 +125,13 @@ label {
     user-select: none;
 }
 
-/* Hide the browser's default radio button */
+/* Hide the browser's default radio button/checkbox */
 .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
+    height: 0;
+    width: 0;
 }
 
 /* Create a custom radio button */
@@ -104,34 +141,57 @@ label {
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #eee;
+    background-color: rgb(206, 206, 206);
     border-radius: 50%;
 }
 
+/* Create a custom checkbox */
+.checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: rgb(206, 206, 206);
+}
+
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+.container:hover input ~ .checkmark,
+.container:hover input ~ .checkbox {
     background-color: #ccc;
 }
 
 /* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
-    background-color: #2196F3;
-    color: green;
+.container input:checked ~ .checkmark,
+.container input:checked ~ .checkbox {
+    background-color: var(--primary-color);
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmark:after {
     content: "";
     position: absolute;
-    /* display: none; */
     opacity: 0;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox:after {
+    content: "";
+    position: absolute;
+    opacity: 0;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkbox:after {
+    opacity: 1;
+    transform: rotate(45deg) scale(1.8);
 }
 
 /* Show the indicator (dot/circle) when checked */
 .container input:checked ~ .checkmark:after {
     /* display: block; */
     opacity: 1;
-    transform: scale(1.8,1.8);
+    transform: scale(1.8);
 }
 
 /* Style the indicator (dot/circle) */
@@ -142,11 +202,123 @@ label {
    height: 8px;
    border-radius: 50%;
    background: white;
-   transform: scale(0,0);
+   transform: scale(0);
+    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+}
+
+/* Style the checkmark/indicator */
+.container .checkbox:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
     transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
 }
 
 .gender {
     margin: 1rem 0 0 1rem;
 }
+
+select {
+    height: 2.5rem;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid black;
+    background: transparent;
+    font-size: 1rem;
+}
+
+textarea {
+    padding: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+button {
+    width: 20rem;
+    margin-left: 45%;
+    margin-bottom: 1rem;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    background-image: linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);
+    border-radius: 1rem;
+    border: 1px solid white;
+    color: white;
+}
+
+@media screen and (max-width: 992px) {
+    form {
+        width: 95%;
+        margin: 1rem;
+        padding: 0;
+    }
+    .title {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .headline {
+        margin-top: 1rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .input-group, textarea {
+        width: 95%;
+    }
+
+    button {
+        padding: .5rem;
+        margin-left: 13rem;
+    }
+
+    input[type=file] {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    form {
+        width: 95%;
+        margin: 1rem;
+        padding: 0;
+    }
+    .title {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .headline {
+        margin-top: 1rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .input-group, textarea {
+        width: 95%;
+    }
+
+    button {
+        padding: .5rem;
+        margin-left: 10%;
+    }
+
+    input[type=file] {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    button {
+        margin-left: .8rem;
+    }
+}
+
 

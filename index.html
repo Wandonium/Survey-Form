@@ -14,24 +14,29 @@
         <fieldset>
             <legend>Personal Details</legend>
             <div class="input-group">
-                <label for="fname">Name</label>
-                <input type="text" id="fname" name="fname" placeholder="Enter name here" required>
+                <input type="text" id="fname" name="fname" placeholder="Name " required>
+                <span class="input-border-left"></span>
+                <span class="input-border-right"></span>
             </div>
             <div class="input-group">
-                <label for="address">Address</label>
-                <input type="text" id="address" name="address" placeholder="Enter address here" required>
+                <input type="text" id="address" name="address" placeholder="Address " required>
+                <span class="input-border-left"></span>
+                <span class="input-border-right"></span>
             </div>
             <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter email here" required>
+                <input type="email" id="email" name="email" placeholder="Email " required>
+                <span class="input-border-left"></span>
+                <span class="input-border-right"></span>
             </div>
             <div class="input-group">
-                <label for="pNumber">Phone Number</label>
-                <input type="text" id="pNumber" name="pNumber" placeholder="e.g 254 707 123 456">
+                <input type="text" id="pNumber" name="pNumber" placeholder="Phone Number e.g 254 707 123 456">
+                <span class="input-border-left"></span>
+                <span class="input-border-right"></span>
             </div>
             <div class="input-group">
-                <label for="iq">IQ</label>
-                <input type="text" id="iq" name="iq" placeholder="Enter IQ here">
+                <input type="number" id="iq" name="iq" placeholder="Your IQ">
+                <span class="input-border-left"></span>
+                <span class="input-border-right"></span>
             </div>
             <div class="input-group">
                 <label for="gender">Gender</label>
@@ -51,8 +56,9 @@
                 </div>
             </div>
             <div class="input-group">
-                <label for="outing-date">Date of Proposed Outing:</label>
-                <input type="date" name="outing-date">
+                <input placeholder="Date of Proposed Outing:" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+                <span class="input-border-left"></span>
+                <span class="input-border-right"></span>
             </div>
         </fieldset>
         <fieldset>
@@ -113,13 +119,12 @@
         <fieldset>
             <legend>Essay Section</legend>
             <div class="input-group">
-                <label for="explanation"></label>
-                <p> In 50 words or more explain why you want to date my daughter</p>
+                <p class="text-q"> In 50 words or more explain why you want to date my daughter</p>
                 <textarea id="explanation" name="explanation" rows="4" cols="50" placeholder="Enter text here"></textarea>
             </div>
             <div class="input-group">
                 <label for="references"></label>
-                <p> Please enter contact details for 2 references below</p>
+                <p class="text-q"> Please enter contact details for 2 references below</p>
                 <textarea id="references" name="references" rows="4" cols="50" placeholder="Enter text here"></textarea>
             </div>
             <div class="input-group">
