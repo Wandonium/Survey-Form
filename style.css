@@ -252,6 +252,10 @@ button {
     color: white;
 }
 
+button:hover {
+    background-image: linear-gradient(-225deg, #ECA1FE 0%, #B19FFF 48%, #5271C4 100%);
+}
+
 @media screen and (max-width: 992px) {
     form {
         width: 95%;
